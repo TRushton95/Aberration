@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bee8iw7q7gjo7"]
+
+[ext_resource type="Script" uid="uid://no8lrb1ai6n8" path="res://game/entities/player/player.gd" id="1_gqtae"]
+[ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_x4rrl"]
+[ext_resource type="PackedScene" uid="uid://cdljd7oi2oo3d" path="res://game/entities/weapons/sword/sword.tscn" id="3_x4rrl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfdk"]
+size = Vector2(112, 112)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_gqtae")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x4rrl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cjfdk")
+
+[node name="Sword" parent="." node_paths=PackedStringArray("_owner") instance=ExtResource("3_x4rrl")]
+position = Vector2(0, -100)
+_owner = NodePath("..")
