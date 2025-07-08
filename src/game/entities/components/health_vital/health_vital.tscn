@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://1xiwrwtqv3y7"]
+
+[ext_resource type="Script" uid="uid://borvs1rmd1u74" path="res://game/entities/components/health_vital/health_vital.gd" id="1_msf14"]
+
+[node name="HealthVital" type="Node"]
+script = ExtResource("1_msf14")

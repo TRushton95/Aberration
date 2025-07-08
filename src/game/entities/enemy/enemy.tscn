@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://nqfokyahs0fw"]
+
+[ext_resource type="Script" uid="uid://xq4r43gufa6" path="res://game/entities/enemy/enemy.gd" id="1_2gbo7"]
+[ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_3hb6s"]
+[ext_resource type="PackedScene" uid="uid://1xiwrwtqv3y7" path="res://game/entities/components/health_vital/health_vital.tscn" id="2_dgysd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxnxk"]
+size = Vector2(60, 60)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health_vital")]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_2gbo7")
+_health_vital = NodePath("HealthVital")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3hb6s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mxnxk")
+
+[node name="HealthVital" parent="." instance=ExtResource("2_dgysd")]
+
+[connection signal="empty" from="HealthVital" to="." method="_on_health_vital_empty"]
+[connection signal="value_changed" from="HealthVital" to="." method="_on_health_vital_value_changed"]

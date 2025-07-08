@@ -1,6 +1,5 @@
-extends CharacterBody2D
-
-const SPEED : int = 500
+extends Entity
+class_name Player
 
 @onready var _weapon : Weapon = $Sword
 
@@ -14,5 +13,5 @@ func _physics_process(delta: float) -> void:
 	var x_movement : float = Input.get_axis("move_left", "move_right")
 	var y_movement : float = Input.get_axis("move_up", "move_down")
 	
-	velocity = Vector2(x_movement, y_movement).normalized() * SPEED
+	velocity = Vector2(x_movement, y_movement).normalized() * _move_speed
 	move_and_slide()
