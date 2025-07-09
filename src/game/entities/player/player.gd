@@ -13,6 +13,17 @@ var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
 }
 
 
+func _on_pickup_area_body_entered(body: Node2D) -> void:
+	if body == null:
+		return
+		
+	if body is OrbPickup:
+		body = body as OrbPickup
+		var reward : Orb = body.get_reward()
+		set_orb_slot(Enums.OrbSlot.CHEST, reward)
+		body.queue_free()
+
+
 func _process(delta: float) -> void:
 	_update_orb_slots()
 	
