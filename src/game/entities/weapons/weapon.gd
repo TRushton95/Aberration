@@ -3,7 +3,7 @@ class_name Weapon
 
 signal fired
 
-@export var _owner : Node2D
+@export var _owner : Player
 @export var _cooldown_s : float = 1.0
 
 var _cooldown_timer : Timer = Timer.new()

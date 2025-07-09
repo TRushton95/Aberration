@@ -32,4 +32,5 @@ shape = SubResource("RectangleShape2D_vmh80")
 debug_color = Color(0.995688, 0, 0.200784, 0.42)
 
 [connection signal="fired" from="." to="." method="_on_fired"]
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0l121p6rnfsl"]
+
+[ext_resource type="Script" uid="uid://cp5x6fc1arjhx" path="res://game/entities/components/direction_component/direction_component.gd" id="1_r4l8q"]
+
+[node name="DirectionComponent" type="Node"]
+script = ExtResource("1_r4l8q")
