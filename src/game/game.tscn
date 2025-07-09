@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bb7raaivjx0tf"]
+[gd_scene load_steps=6 format=3 uid="uid://bb7raaivjx0tf"]
 
 [ext_resource type="Script" uid="uid://bhm1yd13rhy03" path="res://game/game.gd" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://bee8iw7q7gjo7" path="res://game/entities/player/player.tscn" id="2_vasa2"]
 [ext_resource type="PackedScene" uid="uid://nqfokyahs0fw" path="res://game/entities/enemy/enemy.tscn" id="3_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://fklovbofikuw" path="res://game/entities/orb_pickup/orb_pickup.tscn" id="4_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://dndwvdj1mvb75" path="res://game/ui/game_ui.tscn" id="5_dxrkv"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l1rk1")
@@ -16,3 +17,5 @@ position = Vector2(640, 230)
 
 [node name="OrbPickup" parent="." instance=ExtResource("4_4fuuu")]
 position = Vector2(410, 320)
+
+[node name="GameUI" parent="." instance=ExtResource("5_dxrkv")]

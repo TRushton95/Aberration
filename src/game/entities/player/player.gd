@@ -64,6 +64,15 @@ func set_orb_slot(slot: Enums.OrbSlot, new_orb: Orb) -> void:
 		new_orb.enter_chest(self)
 
 
+func get_orb_slot(slot: Enums.OrbSlot) -> Orb:
+	var result : Orb = null
+	
+	if _orb_slots.has(slot):
+		result = _orb_slots[slot]
+		
+	return result
+
+
 func _update_orb_slots() -> void:
 	for slot in _orb_slots.keys():
 		var orb : Orb = _orb_slots[slot] as Orb

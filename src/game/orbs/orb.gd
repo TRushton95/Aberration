@@ -14,6 +14,12 @@ signal head_entered(player: Player)
 signal head_exited(player: Player)
 signal head_updated(player: Player)
 
+@export var _display_name : String = ""
+
+
+func get_display_name() -> String:
+	return _display_name
+
 
 func enter_chest(player: Player) -> void:
 	chest_entered.emit(player)

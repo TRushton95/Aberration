@@ -4,6 +4,7 @@
 
 [node name="FireOrb" type="Node"]
 script = ExtResource("1_yyeci")
+_display_name = "Fire Orb"
 
 [node name="ChestBurningTimer" type="Timer" parent="."]
 
