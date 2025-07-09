@@ -3,5 +3,6 @@ class_name TypeIds
 
 enum Orb {
 	UNSET,
-	FIRE
+	FIRE,
+	ICE
 }

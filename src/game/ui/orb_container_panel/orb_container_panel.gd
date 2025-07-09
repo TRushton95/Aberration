@@ -5,6 +5,8 @@ class_name GameUI_OrbContainerPanel
 
 
 func set_data(orb_collection_data: Dictionary[TypeIds.Orb, OrbStack]) -> void:
+	_clear()
+	
 	for orb_type_id in orb_collection_data.keys():
 		var orb_stack : OrbStack = orb_collection_data[orb_type_id]
 		if orb_stack == null:

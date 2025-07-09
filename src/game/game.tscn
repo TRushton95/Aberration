@@ -16,7 +16,13 @@ position = Vector2(357, 118)
 position = Vector2(640, 230)
 
 [node name="OrbPickup" parent="." instance=ExtResource("4_4fuuu")]
+modulate = Color(1, 0, 0, 1)
 position = Vector2(410, 320)
+_orb_type_id = 1
+
+[node name="OrbPickup2" parent="." instance=ExtResource("4_4fuuu")]
+position = Vector2(689, 468)
+_orb_type_id = 2
 
 [node name="GameUI" parent="." instance=ExtResource("5_dxrkv")]
 

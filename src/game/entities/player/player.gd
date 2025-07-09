@@ -21,10 +21,9 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		
 	if body is OrbPickup:
 		body = body as OrbPickup
-		var reward : Orb = body.get_reward()
-		set_orb_slot(Enums.OrbSlot.CHEST, reward)
+		var orb_type_id : TypeIds.Orb = body.get_orb_type_id()
+		picked_up_orb.emit(orb_type_id)
 		body.queue_free()
-		picked_up_orb.emit(reward.get_type_id())
 
 
 func _process(delta: float) -> void:

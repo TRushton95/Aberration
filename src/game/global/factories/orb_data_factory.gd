@@ -4,7 +4,8 @@ class_name OrbDataFactory
 const ORB_DATA_PATH_FORMAT : String = "res://game/data/orb/%s.tres"
 
 static var _orb_type_data_file_name_lookup : Dictionary[TypeIds.Orb, String] = {
-	TypeIds.Orb.FIRE: "fire_orb"
+	TypeIds.Orb.FIRE: "fire_orb",
+	TypeIds.Orb.ICE: "ice_orb"
 }
 
 static var _cache : Dictionary[TypeIds.Orb, OrbTypeData] = {}
