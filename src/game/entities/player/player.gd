@@ -5,15 +5,19 @@ class_name Player
 
 @onready var _weapon : Weapon = $Sword
 
-var _chest_orb : Orb
+var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
+	Enums.OrbSlot.LEGS: null,
+	Enums.OrbSlot.CHEST: null,
+	Enums.OrbSlot.HEAD: null,
+	Enums.OrbSlot.HANDS: null
+}
 
 
 func _process(delta: float) -> void:
+	_update_orb_slots()
+	
 	if Input.is_action_just_pressed("attack"):
 		_weapon.fire()
-		
-	if _chest_orb != null:
-		_chest_orb.update_chest(self)
 
 
 func _physics_process(delta: float) -> void:
@@ -32,13 +36,35 @@ func _on_direction_component_direction_changed(direction: Enums.Direction) -> vo
 	pass # Replace with function body.
 
 
-func set_chest_orb(orb: Orb) -> void:
-	if _chest_orb != null:
-		_chest_orb.exit_chest(self)
-		_chest_orb.queue_free()
+func set_orb_slot(slot: Enums.OrbSlot, new_orb: Orb) -> void:
+	if !_orb_slots.has(slot):
+		return
 		
-	_chest_orb = orb
-	add_child(_chest_orb)
+	var prev_orb : Orb = _orb_slots[slot]
 	
-	if _chest_orb != null:
-		_chest_orb.enter_chest(self)
+	if prev_orb != null:
+		prev_orb.exit_chest(self)
+		prev_orb.queue_free()
+		
+	_orb_slots[slot] = new_orb
+	
+	if new_orb != null:
+		add_child(new_orb)
+		new_orb.enter_chest(self)
+
+
+func _update_orb_slots() -> void:
+	for slot in _orb_slots.keys():
+		var orb : Orb = _orb_slots[slot] as Orb
+		if orb == null:
+			continue
+			
+		match slot:
+			Enums.OrbSlot.LEGS:
+				orb.update_legs(self)
+			Enums.OrbSlot.CHEST:
+				orb.update_chest(self)
+			Enums.OrbSlot.HANDS:
+				orb.update_hands(self)
+			Enums.OrbSlot.HEAD:
+				orb.update_head(self)
