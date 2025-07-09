@@ -19,3 +19,5 @@ position = Vector2(640, 230)
 position = Vector2(410, 320)
 
 [node name="GameUI" parent="." instance=ExtResource("5_dxrkv")]
+
+[connection signal="picked_up_orb" from="Player" to="." method="_on_player_picked_up_orb"]

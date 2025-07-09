@@ -4,6 +4,13 @@ class_name Game
 @onready var _game_ui : GameUI = $GameUI
 @onready var _player : Player = $Player
 
+var _orb_collection : OrbCollection = OrbCollection.new()
+
+
+func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
+	_orb_collection.add(type_id, 1)
+	_game_ui.set_orb_container_data(_orb_collection.get_all())
+
 
 func _ready() -> void:
 	_player.set_orb_slot(Enums.OrbSlot.CHEST, load("res://game/orbs/fire/fire_orb.tscn").instantiate())

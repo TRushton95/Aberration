@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://fc1w8c45lf42"]
+
+[ext_resource type="Script" uid="uid://bb4fcl1ay87lk" path="res://game/ui/orb_container_panel/orb_container_panel.gd" id="1_5o3ms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5o3ms"]
+
+[node name="OrbContainerPanel" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5o3ms")
+script = ExtResource("1_5o3ms")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2

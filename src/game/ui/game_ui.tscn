@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dndwvdj1mvb75"]
+[gd_scene load_steps=3 format=3 uid="uid://dndwvdj1mvb75"]
 
 [ext_resource type="Script" uid="uid://p8whomltc25m" path="res://game/ui/game_ui.gd" id="1_2yi3t"]
+[ext_resource type="PackedScene" uid="uid://fc1w8c45lf42" path="res://game/ui/orb_container_panel/orb_container_panel.tscn" id="2_6fwhv"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_2yi3t")
@@ -23,3 +24,5 @@ layout_mode = 2
 
 [node name="LegsOrbLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="OrbContainerPanel" parent="." instance=ExtResource("2_6fwhv")]

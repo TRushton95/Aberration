@@ -14,12 +14,15 @@ signal head_entered(player: Player)
 signal head_exited(player: Player)
 signal head_updated(player: Player)
 
-@export var _type_id : TypeIds.Orb = TypeIds.Orb.UNSET
-@export var _display_name : String = ""
+@export var _type_data : OrbTypeData
+
+
+func get_type_id() -> TypeIds.Orb:
+	return _type_data.get_type_id()
 
 
 func get_display_name() -> String:
-	return _display_name
+	return _type_data.get_display_name()
 
 
 func enter_chest(player: Player) -> void:

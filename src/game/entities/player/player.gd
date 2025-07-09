@@ -1,6 +1,8 @@
 extends Entity
 class_name Player
 
+signal picked_up_orb(type_id: TypeIds.Orb)
+
 @export var _direction_component : DirectionComponent
 
 @onready var _weapon : Weapon = $Sword
@@ -22,6 +24,7 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 		var reward : Orb = body.get_reward()
 		set_orb_slot(Enums.OrbSlot.CHEST, reward)
 		body.queue_free()
+		picked_up_orb.emit(reward.get_type_id())
 
 
 func _process(delta: float) -> void:
