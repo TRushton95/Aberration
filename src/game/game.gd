@@ -7,6 +7,10 @@ class_name Game
 var _orb_collection : OrbCollection = OrbCollection.new()
 
 
+func _on_level_exit_player_entered() -> void:
+	get_tree().quit()
+
+
 func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
 	_orb_collection.add(type_id, 1)
 	_game_ui.set_orb_container_data(_orb_collection.get_all())
