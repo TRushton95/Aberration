@@ -14,6 +14,7 @@ signal head_entered(player: Player)
 signal head_exited(player: Player)
 signal head_updated(player: Player)
 
+@export var _type_id : TypeIds.Orb = TypeIds.Orb.UNSET
 @export var _display_name : String = ""
 
 
