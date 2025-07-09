@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu5f5awdhrx2w"]
+
+[ext_resource type="Script" uid="uid://w67uqaco6qi3" path="res://game/orbs/fire/fire_orb.gd" id="1_yyeci"]
+
+[node name="FireOrb" type="Node"]
+script = ExtResource("1_yyeci")
+
+[node name="ChestBurningTimer" type="Timer" parent="."]
+
+[connection signal="chest_entered" from="." to="." method="_on_chest_entered"]
+[connection signal="chest_exited" from="." to="." method="_on_chest_exited"]
