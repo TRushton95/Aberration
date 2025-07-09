@@ -1,6 +1,6 @@
 extends Weapon
 
-const ATTACK_DURATION_S : float = 0.5
+const ATTACK_DURATION_S : float = 0.25
 const ATTACK_DISTANCE : int = 100
 
 @export var _damage : float = 50.0
@@ -56,9 +56,9 @@ func _physics_process(delta: float) -> void:
 	
 	if _attack_progress_s > ATTACK_DURATION_S:
 		_attack_progress_s = -1.0
+		_render_facing = _facing
 		_update_position(0)
 		_hurtbox.monitoring = false
-		_render_facing = _facing
 
 
 func _update_position(percentage_progress: float) -> void:
