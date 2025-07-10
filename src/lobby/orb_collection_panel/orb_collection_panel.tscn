@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh27s6qyegjsc"]
+
+[ext_resource type="Script" uid="uid://vvbiepa040t7" path="res://lobby/orb_collection_panel/orb_collection_panel.gd" id="1_q6qyr"]
+
+[node name="OrbCollectionPanel" type="PanelContainer"]
+script = ExtResource("1_q6qyr")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2

@@ -1,28 +1,28 @@
-extends RefCounted
+extends Resource
 class_name OrbCollection
 
-var _data : Dictionary[TypeIds.Orb, OrbStack] = {}
+@export var _data : Dictionary[TypeIds.Orb, int] = {}
 
 
-func add(type_id: TypeIds.Orb, quantity: int) -> void:
+func add_quantity(type_id: TypeIds.Orb, quantity: int) -> void:
 	if _data.has(type_id):
-		_data[type_id].add_quantity(quantity)
+		_data[type_id] += quantity
 	else:
-		_data[type_id] = OrbStack.new(type_id, quantity)
+		_data[type_id] = quantity
 
 
-func remove(type_id: TypeIds.Orb, quantity: int) -> void:
+func remove_quantity(type_id: TypeIds.Orb, quantity: int) -> void:
 	if !_data.has(type_id):
 		return
 		
-	_data[type_id].remove_quantity(quantity)
+	_data[type_id] -= quantity
 	
-	if _data[type_id].get_quantity() == 0:
+	if _data[type_id] <= 0:
 		_data.erase(type_id)
 
 
-func get_by_id(type_id: TypeIds.Orb) -> OrbStack:
-	var result : OrbStack = null
+func get_quantity(type_id: TypeIds.Orb) -> int:
+	var result : int = 0
 	
 	if _data.has(type_id):
 		result = _data[type_id]
@@ -30,5 +30,12 @@ func get_by_id(type_id: TypeIds.Orb) -> OrbStack:
 	return result
 
 
-func get_all() -> Dictionary[TypeIds.Orb, OrbStack]:
+func get_data() -> Dictionary[TypeIds.Orb, int]:
 	return _data
+
+
+func add(b: OrbCollection) -> void:
+	var b_data : Dictionary[TypeIds.Orb, int] = b.get_data()
+	
+	for orb_type_id in b_data.keys():
+		add_quantity(orb_type_id, b_data[orb_type_id])

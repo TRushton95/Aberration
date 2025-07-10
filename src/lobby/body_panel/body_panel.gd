@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends PanelContainer
 class_name Lobby_BodyPanel
 
 signal head_slot_button_pressed
@@ -6,10 +6,10 @@ signal chest_slot_button_pressed
 signal hands_slot_button_pressed
 signal legs_slot_button_pressed
 
-@onready var _head_slot_button : TextureButton = $VBoxContainer/HeadSlotButton
-@onready var _chest_slot_button : TextureButton = $VBoxContainer/ChestSlotButton
-@onready var _hands_slot_button : TextureButton = $VBoxContainer/HandsSlotButton
-@onready var _legs_slot_button : TextureButton = $VBoxContainer/LegsSlotButton
+@onready var _head_slot_button : Button = $VBoxContainer/HeadSlotButton
+@onready var _chest_slot_button : Button = $VBoxContainer/ChestSlotButton
+@onready var _hands_slot_button : Button = $VBoxContainer/HandsSlotButton
+@onready var _legs_slot_button : Button = $VBoxContainer/LegsSlotButton
 
 
 func _on_head_slot_button_pressed() -> void:

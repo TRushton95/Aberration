@@ -17,5 +17,5 @@ func set_orb_names(head: String, chest: String, hands: String, legs: String) -> 
 	_legs_orb_label.text = ORB_LABEL_FORMAT % [ "Legs", legs ]
 
 
-func set_orb_container_data(orb_data: Dictionary[TypeIds.Orb, OrbStack]) -> void:
+func set_orb_container_data(orb_data: Dictionary[TypeIds.Orb, int]) -> void:
 	_orb_container_panel.set_data(orb_data)

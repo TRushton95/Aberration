@@ -12,8 +12,8 @@ func _on_level_exit_player_entered() -> void:
 
 
 func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
-	_orb_collection.add(type_id, 1)
-	_game_ui.set_orb_container_data(_orb_collection.get_all())
+	_orb_collection.add_quantity(type_id, 1)
+	_game_ui.set_orb_container_data(_orb_collection.get_data())
 
 
 func _ready() -> void:

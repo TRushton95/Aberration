@@ -1,42 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://bysb6fjqllnn4"]
+[gd_scene load_steps=2 format=3 uid="uid://bysb6fjqllnn4"]
 
 [ext_resource type="Script" uid="uid://6mbhog65edo4" path="res://lobby/body_panel/body_panel.gd" id="1_66s1q"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66s1q"]
 
 [node name="BodyPanel" type="PanelContainer"]
 offset_right = 64.0
 offset_bottom = 268.0
-theme_override_styles/panel = SubResource("StyleBoxEmpty_66s1q")
 script = ExtResource("1_66s1q")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="HeadSlotButton" type="TextureButton" parent="VBoxContainer"]
+[node name="HeadSlotButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+text = "Head"
 
-[node name="ChestSlotButton" type="TextureButton" parent="VBoxContainer"]
+[node name="ChestSlotButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+text = "Chest"
 
-[node name="HandsSlotButton" type="TextureButton" parent="VBoxContainer"]
+[node name="HandsSlotButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+text = "Hands"
 
-[node name="LegsSlotButton" type="TextureButton" parent="VBoxContainer"]
+[node name="LegsSlotButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+text = "Legs"
 
 [connection signal="pressed" from="VBoxContainer/HeadSlotButton" to="." method="_on_head_slot_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ChestSlotButton" to="." method="_on_chest_slot_button_pressed"]

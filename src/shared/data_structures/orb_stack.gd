@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resource
 class_name OrbStack
 
 var _orb_type_id : TypeIds.Orb
