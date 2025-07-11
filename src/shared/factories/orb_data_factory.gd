@@ -25,3 +25,13 @@ static func get_orb_data(type_id: TypeIds.Orb) -> OrbTypeData:
 	_cache[type_id] = result
 	
 	return result
+
+
+static func get_orb_name(type_id: TypeIds.Orb) -> String:
+	var result : String = "None"
+	
+	var orb_data : OrbTypeData = get_orb_data(type_id)
+	if orb_data != null:
+		result = orb_data.get_display_name()
+		
+	return result

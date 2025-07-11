@@ -23,6 +23,10 @@ func _ready() -> void:
 	set_orb_name_debug_labels()
 
 
+func setup(_loadout: Loadout) -> void:
+	print("Loadout:\n%s" % _loadout.get_display_string())
+
+
 func set_orb_name_debug_labels() -> void:
 	var head_orb : Orb = _player.get_orb_slot(Enums.OrbSlot.HEAD)
 	var chest_orb : Orb = _player.get_orb_slot(Enums.OrbSlot.CHEST)

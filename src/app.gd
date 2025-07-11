@@ -10,8 +10,8 @@ enum AppState { LOBBY, GAME }
 var _app_state : Node
 
 
-func _on_lobby_start_game_button_pressed() -> void:
-	_go_to_game_state()
+func _on_lobby_start_game_button_pressed(loadout: Loadout) -> void:
+	_go_to_game_state(loadout)
 
 
 func _on_lobby_delete_save_button_pressed() -> void:
@@ -59,11 +59,12 @@ func _go_to_lobby(loadout: Loadout, gathered_orb_collection: OrbCollection) -> v
 	lobby_state.set_data(loadout, gathered_orb_collection)
 
 
-func _go_to_game_state() -> void:
+func _go_to_game_state(loadout: Loadout) -> void:
 	var game_state : Game = _game_scene.instantiate() as Game
 	game_state.level_finished.connect(_on_game_level_finished)
 	
 	_switch_app_state(game_state)
+	game_state.setup(loadout)
 
 
 func _switch_app_state(next_app_state: Node) -> void:
