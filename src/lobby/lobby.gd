@@ -9,7 +9,6 @@ signal delete_save_button_pressed
 
 var _loadout : Loadout = null
 var _orb_collection : OrbCollection = null
-var _selected_body_slot : Enums.OrbSlot = Enums.OrbSlot.UNSET
 var _selected_orb_type : TypeIds.Orb = TypeIds.Orb.UNSET
 
 
@@ -22,59 +21,27 @@ func _on_delete_save_button_pressed() -> void:
 
 
 func _on_body_panel_head_slot_button_pressed() -> void:
-	if _selected_orb_type == TypeIds.Orb.UNSET:
-		_set_selected_body_slot(Enums.OrbSlot.HEAD)
-		_body_panel.set_head_slot_equip_text("")
-	else:
-		_loadout.head_orb = _selected_orb_type
-		_body_panel.set_head_slot_equip_text(OrbDataFactory.get_orb_name(_selected_orb_type))
-		_set_selected_orb_type(TypeIds.Orb.UNSET)
+	_set_body_slot_orb(Enums.OrbSlot.HEAD, _selected_orb_type)
+	_set_selected_orb_type(TypeIds.Orb.UNSET)
 
 
 func _on_body_panel_chest_slot_button_pressed() -> void:
-	if _selected_orb_type == TypeIds.Orb.UNSET:
-		_loadout.chest_orb = TypeIds.Orb.UNSET
-		_body_panel.set_chest_slot_equip_text("")
-	else:
-		_loadout.chest_orb = _selected_orb_type
-		_body_panel.set_chest_slot_equip_text(OrbDataFactory.get_orb_name(_selected_orb_type))
-		_set_selected_orb_type(TypeIds.Orb.UNSET)
+	_set_body_slot_orb(Enums.OrbSlot.CHEST, _selected_orb_type)
+	_set_selected_orb_type(TypeIds.Orb.UNSET)
 
 
 func _on_body_panel_hands_slot_button_pressed() -> void:
-	if _selected_orb_type == TypeIds.Orb.UNSET:
-		_loadout.hands_orb = TypeIds.Orb.UNSET
-		_body_panel.set_hands_slot_equip_text("")
-	else:
-		_loadout.hands_orb = _selected_orb_type
-		_body_panel.set_hands_slot_equip_text(OrbDataFactory.get_orb_name(_selected_orb_type))
-		_set_selected_orb_type(TypeIds.Orb.UNSET)
+	_set_body_slot_orb(Enums.OrbSlot.HANDS, _selected_orb_type)
+	_set_selected_orb_type(TypeIds.Orb.UNSET)
 
 
 func _on_body_panel_legs_slot_button_pressed() -> void:
-	if _selected_orb_type == TypeIds.Orb.UNSET:
-		_loadout.legs_orb = TypeIds.Orb.UNSET
-		_body_panel.set_legs_slot_equip_text("")
-	else:
-		_loadout.legs_orb = _selected_orb_type
-		_body_panel.set_legs_slot_equip_text(OrbDataFactory.get_orb_name(_selected_orb_type))
-		_set_selected_orb_type(TypeIds.Orb.UNSET)
+	_set_body_slot_orb(Enums.OrbSlot.LEGS, _selected_orb_type)
+	_set_selected_orb_type(TypeIds.Orb.UNSET)
 
 
 func _on_orb_collection_panel_button_pressed(orb_type_id: TypeIds.Orb) -> void:
-	if _selected_body_slot == Enums.OrbSlot.UNSET:
-		_set_selected_orb_type(orb_type_id)
-	else:
-		match _selected_body_slot:
-			Enums.OrbSlot.HEAD:
-				_loadout.head_orb = orb_type_id
-			Enums.OrbSlot.CHEST:
-				_loadout.chest = orb_type_id
-			Enums.OrbSlot.HANDS:
-				_loadout.hands = orb_type_id
-			Enums.OrbSlot.LEGS:
-				_loadout.legs = orb_type_id
-		_set_selected_body_slot(Enums.OrbSlot.UNSET)
+	_set_selected_orb_type(orb_type_id)
 
 
 func set_data(loadout: Loadout, orb_collection: OrbCollection) -> void:
@@ -84,11 +51,63 @@ func set_data(loadout: Loadout, orb_collection: OrbCollection) -> void:
 	_orb_collection_panel.set_data(_orb_collection.get_data())
 
 
-func _set_selected_body_slot(body_slot: Enums.OrbSlot) -> void:
-	_selected_body_slot = body_slot
-	print("Selected body slot: %s" % str(Enums.OrbSlot.keys()[body_slot]))
+func _set_body_slot_orb(body_slot: Enums.OrbSlot, orb_type_id: TypeIds.Orb) -> void:
+	var prev_orb_type : TypeIds.Orb = _get_loadout_slot(body_slot)
+	if prev_orb_type != TypeIds.Orb.UNSET:
+		_orb_collection.add_quantity(prev_orb_type, 1)
+	else:
+		_orb_collection.remove_quantity(orb_type_id, 1)
+		
+	_set_loadout_slot(body_slot, orb_type_id)
+	var display_text : String = OrbDataFactory.get_orb_name(_selected_orb_type) if _selected_orb_type != TypeIds.Orb.UNSET else ""
+	_set_loadout_slot_text(body_slot, display_text)
+	
+	set_data(_loadout, _orb_collection)
+
+
+func _set_loadout_slot_text(body_slot: Enums.OrbSlot, text: String) -> void:
+	match body_slot:
+		Enums.OrbSlot.HEAD:
+			_body_panel.set_head_slot_equip_text(text)
+		Enums.OrbSlot.CHEST:
+			_body_panel.set_chest_slot_equip_text(text)
+		Enums.OrbSlot.HANDS:
+			_body_panel.set_hands_slot_equip_text(text)
+		Enums.OrbSlot.LEGS:
+			_body_panel.set_legs_slot_equip_text(text)
+
+
+func _get_loadout_slot(body_slot: Enums.OrbSlot) -> TypeIds.Orb:
+	var result : TypeIds.Orb = TypeIds.Orb.UNSET
+	
+	match body_slot:
+		Enums.OrbSlot.HEAD:
+			result = _loadout.head_orb
+		Enums.OrbSlot.CHEST:
+			result = _loadout.chest_orb
+		Enums.OrbSlot.HANDS:
+			result = _loadout.hands_orb
+		Enums.OrbSlot.LEGS:
+			result = _loadout.legs_orb
+			
+	return result
+
+
+func _set_loadout_slot(body_slot: Enums.OrbSlot, orb_type_id: TypeIds.Orb) -> void:
+	match body_slot:
+		Enums.OrbSlot.HEAD:
+			_loadout.head_orb = orb_type_id
+		Enums.OrbSlot.CHEST:
+			_loadout.chest_orb = orb_type_id
+		Enums.OrbSlot.HANDS:
+			_loadout.hands_orb = orb_type_id
+		Enums.OrbSlot.LEGS:
+			_loadout.legs_orb = orb_type_id
 
 
 func _set_selected_orb_type(orb_type: TypeIds.Orb) -> void:
+	if _selected_orb_type == orb_type:
+		return
+		
 	_selected_orb_type = orb_type
 	print("Selected orb type: %s" % str(TypeIds.Orb.keys()[orb_type]))
