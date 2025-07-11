@@ -1,16 +1,23 @@
 extends PanelContainer
 class_name Lobby
 
-@onready var _orb_collection_panel : Lobby_OrbCollectionPanel = $HBoxContainer/OrbCollectionPanel
+signal start_game_button_pressed
 
+@onready var _orb_collection_panel : Lobby_OrbCollectionPanel = $VBoxContainer/HBoxContainer/OrbCollectionPanel
+
+var orb_collection : OrbCollection = null
 var _selected_body_slot : Enums.OrbSlot = Enums.OrbSlot.UNSET
 var _selected_orb_type : TypeIds.Orb = TypeIds.Orb.UNSET
 
 
-func _ready() -> void:
-	var orb_collection : OrbCollection = load("res://game/debug_orb_collection.tres") as OrbCollection
+func _on_start_game_button_pressed() -> void:
+	start_game_button_pressed.emit()
+
+
+func setup(orb_collection: OrbCollection) -> void:
 	if orb_collection == null:
-		return
+		push_error("Failed to load orb collection")
+		orb_collection = OrbCollection.new()
 		
 	_orb_collection_panel.set_data(orb_collection.get_data())
 

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="OrbTypeData" load_steps=2 format=3 uid="uid://b6cocgi7oal8h"]
+
+[ext_resource type="Script" uid="uid://ddnjxdw7njsow" path="res://shared/data/orb/orb_type_data.gd" id="1_3gf4i"]
+
+[resource]
+script = ExtResource("1_3gf4i")
+_type_id = 1
+_display_name = "Fire Orb"
+metadata/_custom_type_script = "uid://ddnjxdw7njsow"

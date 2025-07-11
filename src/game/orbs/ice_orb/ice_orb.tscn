@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgsxd6ftb2fxc"]
 
 [ext_resource type="Script" uid="uid://b4dtsi8tee4mo" path="res://game/orbs/ice_orb/ice_orb.gd" id="1_gdteu"]
-[ext_resource type="Resource" uid="uid://saxeejlboei6" path="res://game/data/orb/ice_orb.tres" id="2_g4uyi"]
+[ext_resource type="Resource" uid="uid://d05y0rlq0l7p8" path="res://shared/data/orb/ice_orb.tres" id="2_g4uyi"]
 
 [node name="IceOrb" type="Node"]
 script = ExtResource("1_gdteu")

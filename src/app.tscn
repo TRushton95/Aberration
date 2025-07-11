@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsodf8y8cko2p"]
+
+[ext_resource type="Script" uid="uid://ma320qtmfnk4" path="res://app.gd" id="1_j6dmo"]
+[ext_resource type="PackedScene" uid="uid://bb7raaivjx0tf" path="res://game/game.tscn" id="2_i4801"]
+[ext_resource type="PackedScene" uid="uid://dmf0crnb0y5uk" path="res://lobby/lobby.tscn" id="3_d7sxu"]
+
+[node name="App" type="Node"]
+script = ExtResource("1_j6dmo")
+_game_scene = ExtResource("2_i4801")
+_lobby_scene = ExtResource("3_d7sxu")

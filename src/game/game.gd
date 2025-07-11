@@ -1,6 +1,8 @@
 extends Node2D
 class_name Game
 
+signal level_finished(orb_collection: OrbCollection)
+
 @onready var _game_ui : GameUI = $GameUI
 @onready var _player : Player = $Player
 
@@ -8,7 +10,7 @@ var _orb_collection : OrbCollection = OrbCollection.new()
 
 
 func _on_level_exit_player_entered() -> void:
-	get_tree().quit()
+	level_finished.emit(_orb_collection)
 
 
 func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:

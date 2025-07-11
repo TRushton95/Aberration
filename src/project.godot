@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="abberation"
-run/main_scene="uid://dmf0crnb0y5uk"
+run/main_scene="uid://dsodf8y8cko2p"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SpatialHelper="*res://game/global/helpers/spatial_helper.gd"
+SpatialHelper="*res://game/helpers/spatial_helper.gd"
 
 [input]
 

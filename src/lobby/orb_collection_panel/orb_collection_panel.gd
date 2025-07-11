@@ -14,9 +14,15 @@ func set_data(orb_collection_data: Dictionary[TypeIds.Orb, int]) -> void:
 	_clear()
 	
 	for orb_type_id in orb_collection_data.keys():
+		var orb_data : OrbTypeData = OrbDataFactory.get_orb_data(orb_type_id)
+		if orb_data == null:
+			continue
+			
+		var quantity : int = orb_collection_data[orb_type_id]
+		
 		var button : Button = Button.new()
 		button.pressed.connect(_on_button_connect.bind(orb_type_id))
-		button.text = str(TypeIds.Orb.values()[orb_type_id]).to_upper()
+		button.text = "%s (%s)" % [ orb_data.get_display_name(), str(quantity) ]
 		_container.add_child(button)
 
 

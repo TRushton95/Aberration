@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="OrbTypeData" load_steps=2 format=3 uid="uid://d05y0rlq0l7p8"]
+
+[ext_resource type="Script" uid="uid://ddnjxdw7njsow" path="res://shared/data/orb/orb_type_data.gd" id="1_ju25y"]
+
+[resource]
+script = ExtResource("1_ju25y")
+_type_id = 2
+_display_name = "Ice Orb"
+metadata/_custom_type_script = "uid://ddnjxdw7njsow"
