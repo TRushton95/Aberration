@@ -41,9 +41,17 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start Game"
 
+[node name="DeleteSaveButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Delete Save"
+
 [connection signal="chest_slot_button_pressed" from="VBoxContainer/HBoxContainer/BodyPanel" to="." method="_on_body_panel_chest_slot_button_pressed"]
 [connection signal="hands_slot_button_pressed" from="VBoxContainer/HBoxContainer/BodyPanel" to="." method="_on_body_panel_hands_slot_button_pressed"]
 [connection signal="head_slot_button_pressed" from="VBoxContainer/HBoxContainer/BodyPanel" to="." method="_on_body_panel_head_slot_button_pressed"]
 [connection signal="legs_slot_button_pressed" from="VBoxContainer/HBoxContainer/BodyPanel" to="." method="_on_body_panel_legs_slot_button_pressed"]
 [connection signal="button_pressed" from="VBoxContainer/HBoxContainer/OrbCollectionPanel" to="." method="_on_orb_collection_panel_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/DeleteSaveButton" to="." method="_on_delete_save_button_pressed"]
