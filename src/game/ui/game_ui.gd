@@ -3,11 +3,11 @@ class_name GameUI
 
 const ORB_LABEL_FORMAT : String = "%s: %s"
 
-@onready var _level_label : Label = $MarginContainer/LevelLabel
-@onready var _head_orb_label : Label = $VBoxContainer/HeadOrbLabel
-@onready var _chest_orb_label : Label = $VBoxContainer/ChestOrbLabel
-@onready var _hands_orb_label : Label = $VBoxContainer/HandsOrbLabel
-@onready var _legs_orb_label : Label = $VBoxContainer/LegsOrbLabel
+@onready var _level_label : Label = $MarginContainer/VBoxContainer2/LevelLabel
+@onready var _head_orb_label : Label = $MarginContainer/VBoxContainer2/VBoxContainer/HeadOrbLabel
+@onready var _chest_orb_label : Label = $MarginContainer/VBoxContainer2/VBoxContainer/ChestOrbLabel
+@onready var _hands_orb_label : Label = $MarginContainer/VBoxContainer2/VBoxContainer/HandsOrbLabel
+@onready var _legs_orb_label : Label = $MarginContainer/VBoxContainer2/VBoxContainer/LegsOrbLabel
 @onready var _orb_container_panel : GameUI_OrbContainerPanel = $OrbContainerPanel
 
 

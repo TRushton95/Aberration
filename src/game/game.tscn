@@ -16,17 +16,23 @@ position = Vector2(357, 118)
 [node name="Enemy" parent="." instance=ExtResource("3_h7iqs")]
 position = Vector2(640, 230)
 
+[node name="Enemy2" parent="." instance=ExtResource("3_h7iqs")]
+position = Vector2(140, 348)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_h7iqs")]
+position = Vector2(1058, 364)
+
 [node name="OrbPickup" parent="." instance=ExtResource("4_4fuuu")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(410, 320)
+position = Vector2(960, 172)
 _orb_type_id = 1
 
 [node name="OrbPickup2" parent="." instance=ExtResource("4_4fuuu")]
-position = Vector2(689, 468)
+position = Vector2(327, 526)
 _orb_type_id = 2
 
 [node name="LevelExit" parent="." instance=ExtResource("6_dakft")]
-position = Vector2(279, 528)
+position = Vector2(952, 544)
 
 [node name="GameUI" parent="." instance=ExtResource("5_dxrkv")]
 

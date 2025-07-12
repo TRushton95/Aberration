@@ -25,7 +25,6 @@ func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
 
 
 func _ready() -> void:
-	_player.set_orb_slot(Enums.OrbSlot.CHEST, load("res://game/orbs/fire/fire_orb.tscn").instantiate())
 	set_orb_name_debug_labels()
 
 

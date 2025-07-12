@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu5f5awdhrx2w"]
 
-[ext_resource type="Script" uid="uid://w67uqaco6qi3" path="res://game/orbs/fire/fire_orb.gd" id="1_yyeci"]
+[ext_resource type="Script" uid="uid://w67uqaco6qi3" path="res://game/orbs/fire_orb/fire_orb.gd" id="1_yyeci"]
 [ext_resource type="Resource" uid="uid://b6cocgi7oal8h" path="res://shared/data/orb/fire_orb.tres" id="2_1c7ko"]
 
 [node name="FireOrb" type="Node"]
