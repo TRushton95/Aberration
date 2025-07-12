@@ -1,8 +1,8 @@
 extends Weapon
 
 const ATTACK_DURATION_S : float = 0.25
-const ATTACK_DISTANCE : int = 100
 
+@export var _attack_circle_radius : int = 100
 @export var _damage : float = 50.0
 @export var _sweep_angle_rads : float = TAU / 4
 
@@ -66,4 +66,5 @@ func _update_position(percentage_progress: float) -> void:
 	var direction_from_owner : Vector2 = Vector2.from_angle(angle_rads)
 	rotation = angle_rads + (TAU / 4)
 	
-	global_position = _owner.global_position + (direction_from_owner * ATTACK_DISTANCE)
+	var center_offset : Vector2 = Vector2(0, -64) # Horrible hardcoding
+	global_position = _owner.global_position + center_offset + (direction_from_owner * _attack_circle_radius)

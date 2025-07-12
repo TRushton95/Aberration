@@ -13,6 +13,21 @@ size = Vector2(80, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0nmi"]
 size = Vector2(100, 50)
 
+[sub_resource type="Animation" id="Animation_dhej3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_v0nmi"]
 resource_name = "walking"
 length = 0.5
@@ -28,21 +43,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 0.85), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_dhej3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn1iv"]
@@ -68,8 +68,10 @@ position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_dhej3")
 
 [node name="Sword" parent="." node_paths=PackedStringArray("_owner") instance=ExtResource("3_x4rrl")]
-position = Vector2(0, -100)
+position = Vector2(0, -170)
+_attack_circle_radius = 150
 _owner = NodePath("..")
+_cooldown_s = 0.25
 
 [node name="HealthVital" parent="." instance=ExtResource("4_cjfdk")]
 
