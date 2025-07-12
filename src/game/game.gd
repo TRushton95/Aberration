@@ -1,16 +1,17 @@
 extends Node2D
 class_name Game
 
-signal level_finished(orb_collection: OrbCollection)
+signal level_finished(level: int, orb_collection: OrbCollection)
 
 @onready var _game_ui : GameUI = $GameUI
 @onready var _player : Player = $Player
 
+var _level : int = 1
 var _orb_collection : OrbCollection = OrbCollection.new()
 
 
 func _on_level_exit_player_entered() -> void:
-	level_finished.emit(_orb_collection)
+	level_finished.emit(_level, _orb_collection)
 
 
 func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
@@ -23,7 +24,9 @@ func _ready() -> void:
 	set_orb_name_debug_labels()
 
 
-func setup(loadout: Loadout) -> void:
+func setup(level: int, loadout: Loadout) -> void:
+	_level = level
+	_game_ui.set_level(_level)
 	_player.set_loadout(loadout)
 	print("Loadout:\n%s" % loadout.get_display_string())
 

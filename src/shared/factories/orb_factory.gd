@@ -1,7 +1,7 @@
 extends Node
 class_name OrbFactory
 
-const ORB_PATH_FORMAT : String = "res://shared/data/orb/%s.tres"
+const ORB_PATH_FORMAT : String = "res://game/orbs/%s/%s.tscn"
 
 static var _orb_file_name_lookup : Dictionary[TypeIds.Orb, String] = {
 	TypeIds.Orb.FIRE: "fire_orb",
@@ -19,7 +19,7 @@ static func build(type_id: TypeIds.Orb) -> Orb:
 		return null
 		
 	var orb_type_data_file_name : String = _orb_file_name_lookup[type_id]
-	var orb_path : String = ORB_PATH_FORMAT % [ orb_type_data_file_name ]
+	var orb_path : String = ORB_PATH_FORMAT % [ orb_type_data_file_name, orb_type_data_file_name ]
 	
 	var result : Orb = load(orb_path).instantiate() as Orb
 	_cache[type_id] = result

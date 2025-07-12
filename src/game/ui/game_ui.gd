@@ -3,6 +3,7 @@ class_name GameUI
 
 const ORB_LABEL_FORMAT : String = "%s: %s"
 
+@onready var _level_label : Label = $MarginContainer/LevelLabel
 @onready var _head_orb_label : Label = $VBoxContainer/HeadOrbLabel
 @onready var _chest_orb_label : Label = $VBoxContainer/ChestOrbLabel
 @onready var _hands_orb_label : Label = $VBoxContainer/HandsOrbLabel
@@ -19,3 +20,7 @@ func set_orb_names(head: String, chest: String, hands: String, legs: String) -> 
 
 func set_orb_container_data(orb_data: Dictionary[TypeIds.Orb, int]) -> void:
 	_orb_container_panel.set_data(orb_data)
+
+
+func set_level(level: int) -> void:
+	_level_label.text = "Level: %s" % str(level)
