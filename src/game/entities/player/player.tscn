@@ -41,5 +41,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_v0nmi")
 debug_color = Color(0, 0.62807, 0.495894, 0.42)
 
+[node name="OrbContainer" type="Node" parent="."]
+
 [connection signal="direction_changed" from="DirectionComponent" to="." method="_on_direction_component_direction_changed"]
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

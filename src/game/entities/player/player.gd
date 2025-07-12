@@ -5,6 +5,7 @@ signal picked_up_orb(type_id: TypeIds.Orb)
 
 @export var _direction_component : DirectionComponent
 
+@onready var _orb_container : Node = $OrbContainer
 @onready var _weapon : Weapon = $Sword
 
 var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
@@ -27,7 +28,7 @@ func _on_pickup_area_body_entered(body: Node2D) -> void:
 
 
 func _process(delta: float) -> void:
-	_update_orb_slots()
+	_update_orb()
 	
 	if Input.is_action_just_pressed("attack"):
 		_weapon.fire()
@@ -39,6 +40,18 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = Vector2(x_movement, y_movement).normalized() * _move_speed
 	move_and_slide()
+
+
+func set_loadout(loadout: Loadout) -> void:
+	var head_orb : Orb = OrbFactory.build(loadout.head_orb)
+	var chest_orb : Orb = OrbFactory.build(loadout.chest_orb)
+	var hands_orb : Orb = OrbFactory.build(loadout.hands_orb)
+	var legs_orb : Orb = OrbFactory.build(loadout.legs_orb)
+	
+	set_orb_slot(Enums.OrbSlot.HEAD, head_orb)
+	set_orb_slot(Enums.OrbSlot.CHEST, chest_orb)
+	set_orb_slot(Enums.OrbSlot.HANDS, hands_orb)
+	set_orb_slot(Enums.OrbSlot.LEGS, legs_orb)
 
 
 func get_direction_component() -> DirectionComponent:
@@ -62,7 +75,7 @@ func set_orb_slot(slot: Enums.OrbSlot, new_orb: Orb) -> void:
 	_orb_slots[slot] = new_orb
 	
 	if new_orb != null:
-		add_child(new_orb)
+		_orb_container.add_child(new_orb)
 		new_orb.enter_chest(self)
 
 
@@ -75,7 +88,7 @@ func get_orb_slot(slot: Enums.OrbSlot) -> Orb:
 	return result
 
 
-func _update_orb_slots() -> void:
+func _update_orb() -> void:
 	for slot in _orb_slots.keys():
 		var orb : Orb = _orb_slots[slot] as Orb
 		if orb == null:
