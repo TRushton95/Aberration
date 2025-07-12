@@ -1,17 +1,55 @@
-[gd_scene load_steps=9 format=3 uid="uid://bee8iw7q7gjo7"]
+[gd_scene load_steps=12 format=3 uid="uid://bee8iw7q7gjo7"]
 
 [ext_resource type="Script" uid="uid://no8lrb1ai6n8" path="res://game/entities/player/player.gd" id="1_gqtae"]
-[ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_x4rrl"]
+[ext_resource type="Texture2D" uid="uid://cic6pdluk24em" path="res://game/entities/player/player.png" id="2_v0nmi"]
 [ext_resource type="PackedScene" uid="uid://cdljd7oi2oo3d" path="res://game/entities/weapons/sword/sword.tscn" id="3_x4rrl"]
 [ext_resource type="PackedScene" uid="uid://1xiwrwtqv3y7" path="res://game/entities/components/health_vital/health_vital.tscn" id="4_cjfdk"]
 [ext_resource type="PackedScene" uid="uid://d0l121p6rnfsl" path="res://game/entities/components/direction_component/direction_component.tscn" id="5_oic1i"]
 [ext_resource type="PackedScene" uid="uid://dq82d7qj7s3hy" path="res://game/entities/components/health_bar/health_bar.tscn" id="6_v0nmi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjfdk"]
-size = Vector2(112, 112)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhej3"]
+size = Vector2(80, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0nmi"]
-size = Vector2(144, 144)
+size = Vector2(100, 50)
+
+[sub_resource type="Animation" id="Animation_v0nmi"]
+resource_name = "walking"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.85), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dhej3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn1iv"]
+_data = {
+&"RESET": SubResource("Animation_dhej3"),
+&"walking": SubResource("Animation_v0nmi")
+}
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_direction_component", "_health_vital", "_health_bar")]
 collision_mask = 0
@@ -21,10 +59,13 @@ _health_vital = NodePath("HealthVital")
 _health_bar = NodePath("HealthBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_x4rrl")
+position = Vector2(0, -1)
+texture = ExtResource("2_v0nmi")
+offset = Vector2(0, -62)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_cjfdk")
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_dhej3")
 
 [node name="Sword" parent="." node_paths=PackedStringArray("_owner") instance=ExtResource("3_x4rrl")]
 position = Vector2(0, -100)
@@ -40,12 +81,22 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+position = Vector2(0, -25)
 shape = SubResource("RectangleShape2D_v0nmi")
 debug_color = Color(0, 0.62807, 0.495894, 0.42)
 
 [node name="OrbContainer" type="Node" parent="."]
 
 [node name="HealthBar" parent="." instance=ExtResource("6_v0nmi")]
+offset_left = -72.0
+offset_top = -181.0
+offset_right = 72.0
+offset_bottom = -161.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kn1iv")
+}
 
 [connection signal="empty" from="HealthVital" to="." method="_on_health_vital_empty"]
 [connection signal="direction_changed" from="DirectionComponent" to="." method="_on_direction_component_direction_changed"]

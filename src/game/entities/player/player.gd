@@ -6,6 +6,8 @@ signal died
 
 @export var _direction_component : DirectionComponent
 
+@onready var _anim_player : AnimationPlayer = $AnimationPlayer
+@onready var _sprite : Sprite2D = $Sprite2D
 @onready var _orb_container : Node = $OrbContainer
 @onready var _weapon : Weapon = $Sword
 
@@ -15,6 +17,8 @@ var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
 	Enums.OrbSlot.HEAD: null,
 	Enums.OrbSlot.HANDS: null
 }
+
+var _prev_direction : Enums.Direction = Enums.Direction.DOWN
 
 
 func _on_health_vital_empty() -> void:
@@ -45,6 +49,11 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = Vector2(x_movement, y_movement).normalized() * _move_speed
 	move_and_slide()
+	
+	if velocity != Vector2.ZERO:
+		_anim_player.play("walking")
+	else:
+		_anim_player.play("RESET")
 
 
 func set_loadout(loadout: Loadout) -> void:
@@ -64,7 +73,10 @@ func get_direction_component() -> DirectionComponent:
 
 
 func _on_direction_component_direction_changed(direction: Enums.Direction) -> void:
-	pass # Replace with function body.
+	if direction == Enums.Direction.LEFT:
+		_sprite.flip_h = true
+	elif direction == Enums.Direction.RIGHT:
+		_sprite.flip_h = false
 
 
 func set_orb_slot(slot: Enums.OrbSlot, new_orb: Orb) -> void:
