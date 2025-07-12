@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://nqfokyahs0fw"]
+[gd_scene load_steps=6 format=3 uid="uid://nqfokyahs0fw"]
 
 [ext_resource type="Script" uid="uid://xq4r43gufa6" path="res://game/entities/enemy/enemy.gd" id="1_2gbo7"]
 [ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_3hb6s"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxnxk"]
 size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hb6s"]
+size = Vector2(54, 54)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health_vital")]
 collision_layer = 4
@@ -23,5 +26,18 @@ shape = SubResource("RectangleShape2D_mxnxk")
 
 [node name="HealthVital" parent="." instance=ExtResource("2_dgysd")]
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_3hb6s")
+debug_color = Color(0.961971, 0, 0.507286, 0.42)
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="empty" from="HealthVital" to="." method="_on_health_vital_empty"]
 [connection signal="value_changed" from="HealthVital" to="." method="_on_health_vital_value_changed"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

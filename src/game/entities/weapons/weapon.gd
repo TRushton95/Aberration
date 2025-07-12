@@ -22,6 +22,9 @@ func _ready() -> void:
 
 
 func fire() -> void:
+	if _is_on_cooldown:
+		return
+		
 	_is_on_cooldown = true
 	_cooldown_timer.start(_cooldown_s)
 	fired.emit()

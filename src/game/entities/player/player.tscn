@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bee8iw7q7gjo7"]
+[gd_scene load_steps=10 format=3 uid="uid://bee8iw7q7gjo7"]
 
 [ext_resource type="Script" uid="uid://no8lrb1ai6n8" path="res://game/entities/player/player.gd" id="1_gqtae"]
 [ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_x4rrl"]
@@ -11,6 +11,12 @@ size = Vector2(112, 112)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0nmi"]
 size = Vector2(144, 144)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oic1i"]
+bg_color = Color(0.574473, 0, 0.121103, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0nmi"]
+bg_color = Color(0.243274, 0.682409, 0, 1)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("_direction_component", "_health_vital")]
 collision_mask = 0
@@ -43,5 +49,18 @@ debug_color = Color(0, 0.62807, 0.495894, 0.42)
 
 [node name="OrbContainer" type="Node" parent="."]
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 20)
+offset_left = -71.0
+offset_top = -134.0
+offset_right = 73.0
+offset_bottom = -119.0
+theme_override_styles/background = SubResource("StyleBoxFlat_oic1i")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v0nmi")
+value = 100.0
+show_percentage = false
+
+[connection signal="max_value_changed" from="HealthVital" to="." method="_on_health_vital_max_value_changed"]
+[connection signal="value_changed" from="HealthVital" to="." method="_on_health_vital_value_changed"]
 [connection signal="direction_changed" from="DirectionComponent" to="." method="_on_direction_component_direction_changed"]
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

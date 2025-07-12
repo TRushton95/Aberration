@@ -5,6 +5,7 @@ signal picked_up_orb(type_id: TypeIds.Orb)
 
 @export var _direction_component : DirectionComponent
 
+@onready var _health_bar : ProgressBar = $HealthBar
 @onready var _orb_container : Node = $OrbContainer
 @onready var _weapon : Weapon = $Sword
 
@@ -14,6 +15,14 @@ var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
 	Enums.OrbSlot.HEAD: null,
 	Enums.OrbSlot.HANDS: null
 }
+
+
+func _on_health_vital_max_value_changed(value: float) -> void:
+	_health_bar.max_value = value
+
+
+func _on_health_vital_value_changed(value: float) -> void:
+	_health_bar.value = value
 
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:

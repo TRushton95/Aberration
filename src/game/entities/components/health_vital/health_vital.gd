@@ -5,6 +5,7 @@ signal value_changed(value: float)
 signal max_value_changed(value: float)
 signal empty
 signal full
+signal hurt
 
 @export var _max_value : float = 100.0
 
@@ -43,6 +44,7 @@ func add(value: int) -> void:
 
 func remove(value: float) -> void:
 	set_value(_value - value)
+	hurt.emit()
 
 
 func get_value() -> float:
