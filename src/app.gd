@@ -10,6 +10,10 @@ enum AppState { LOBBY, GAME }
 var _app_state : Node
 
 
+func _on_game_player_died() -> void:
+	get_tree().quit()
+
+
 func _on_lobby_start_game_button_pressed(loadout: Loadout) -> void:
 	_go_to_game_state(loadout)
 
@@ -62,6 +66,7 @@ func _go_to_lobby(loadout: Loadout, gathered_orb_collection: OrbCollection) -> v
 func _go_to_game_state(loadout: Loadout) -> void:
 	var game_state : Game = _game_scene.instantiate() as Game
 	game_state.level_finished.connect(_on_game_level_finished)
+	game_state.player_died.connect(_on_game_player_died)
 	
 	var save_data : SaveData = _load_game_state()
 	

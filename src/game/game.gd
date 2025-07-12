@@ -2,12 +2,17 @@ extends Node2D
 class_name Game
 
 signal level_finished(level: int, orb_collection: OrbCollection)
+signal player_died
 
 @onready var _game_ui : GameUI = $GameUI
 @onready var _player : Player = $Player
 
 var _level : int = 1
 var _orb_collection : OrbCollection = OrbCollection.new()
+
+
+func _on_player_died() -> void:
+	player_died.emit()
 
 
 func _on_level_exit_player_entered() -> void:

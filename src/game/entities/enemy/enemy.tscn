@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://nqfokyahs0fw"]
+[gd_scene load_steps=7 format=3 uid="uid://nqfokyahs0fw"]
 
 [ext_resource type="Script" uid="uid://xq4r43gufa6" path="res://game/entities/enemy/enemy.gd" id="1_2gbo7"]
 [ext_resource type="Texture2D" uid="uid://4dlsvhsi0ihf" path="res://icon.svg" id="2_3hb6s"]
 [ext_resource type="PackedScene" uid="uid://1xiwrwtqv3y7" path="res://game/entities/components/health_vital/health_vital.tscn" id="2_dgysd"]
+[ext_resource type="PackedScene" uid="uid://dq82d7qj7s3hy" path="res://game/entities/components/health_bar/health_bar.tscn" id="4_mxnxk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxnxk"]
 size = Vector2(60, 60)
@@ -10,11 +11,12 @@ size = Vector2(60, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3hb6s"]
 size = Vector2(54, 54)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health_vital")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("_health_vital", "_health_bar")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_2gbo7")
 _health_vital = NodePath("HealthVital")
+_health_bar = NodePath("HealthBar")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 self_modulate = Color(1, 0, 0, 1)
@@ -36,8 +38,14 @@ debug_color = Color(0.961971, 0, 0.507286, 0.42)
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HealthBar" parent="." instance=ExtResource("4_mxnxk")]
+offset_left = -41.0
+offset_top = -63.0
+offset_right = 103.0
+offset_bottom = -43.0
+scale = Vector2(0.577, 0.577)
+
 [connection signal="empty" from="HealthVital" to="." method="_on_health_vital_empty"]
-[connection signal="value_changed" from="HealthVital" to="." method="_on_health_vital_value_changed"]
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
