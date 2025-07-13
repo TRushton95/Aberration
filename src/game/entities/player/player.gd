@@ -46,13 +46,14 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("attack"):
 		if _selected_spell_slot == -1:
 			_weapon.fire()
-		else:
+		elif !ability.is_on_cooldown():
 			ability.execute(self, get_global_mouse_position())
 			
 		
 	if Input.is_action_just_pressed("select_spell_slot_1"):
 		_selected_spell_slot = 0
 		
+	ability.update(delta)
 
 
 func _physics_process(delta: float) -> void:

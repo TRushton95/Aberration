@@ -26,6 +26,16 @@ func _on_player_picked_up_orb(type_id: TypeIds.Orb) -> void:
 
 func _ready() -> void:
 	set_orb_name_debug_labels()
+	_game_ui.set_ability_button_texture(_player.ability.get_icon())
+
+
+func _process(_delta: float) -> void:
+	var cooldown : float = _player.ability.get_cooldown()
+	var remaining_cooldown : float = _player.ability.get_remaining_cooldown()
+	
+	if cooldown > 0.0:
+		var remaining_cooldown_percent : float = (remaining_cooldown / cooldown) * 100.0
+		_game_ui.set_ability_button_remaining_cooldown_percent(remaining_cooldown_percent)
 
 
 func setup(level: int, loadout: Loadout) -> void:

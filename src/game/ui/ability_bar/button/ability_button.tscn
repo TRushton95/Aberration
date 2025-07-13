@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://brhyiypjvxdpk"]
+
+[ext_resource type="Script" uid="uid://6k05y5re45ed" path="res://game/ui/ability_bar/button/ability_button.gd" id="1_bwkie"]
+[ext_resource type="Texture2D" uid="uid://d4lmob54cqpfs" path="res://game/entities/abilities/cooldown_filter.png" id="2_c37u0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcodm"]
+bg_color = Color(1.20327e-08, 0.178347, 0.260638, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.870588, 0.72549, 0.0156863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="AbilityButton" type="PanelContainer"]
+custom_minimum_size = Vector2(68, 68)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qcodm")
+script = ExtResource("1_bwkie")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+fill_mode = 5
+texture_progress = ExtResource("2_c37u0")
