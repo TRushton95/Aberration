@@ -2,7 +2,7 @@ extends Resource
 class_name Target
 
 
-func get_target_type() -> void:
+func get_target_type() -> Enums.TargetType:
 	return _internal_get_target_type()
 
 

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=7 format=3 uid="uid://bduqu27fhkjik"]
+
+[ext_resource type="Script" uid="uid://dc6thg5pqepm0" path="res://game/entities/abilities/effects/effect.gd" id="1_goq2v"]
+[ext_resource type="Resource" uid="uid://b3q811knenc33" path="res://game/entities/abilities/implementations/fireball/area_effect.tres" id="2_446cy"]
+[ext_resource type="Script" uid="uid://dmo2b426enllm" path="res://game/entities/abilities/target_type/ground_target_type.gd" id="3_80xej"]
+[ext_resource type="PackedScene" uid="uid://bpj5o4xx6obs6" path="res://game/entities/abilities/implementations/fireball/projectile.tscn" id="3_446cy"]
+[ext_resource type="Script" uid="uid://buequrxuxivpp" path="res://game/entities/abilities/ability.gd" id="4_4tfnd"]
+
+[sub_resource type="Resource" id="Resource_3byj6"]
+script = ExtResource("3_80xej")
+metadata/_custom_type_script = "uid://dmo2b426enllm"
+
+[resource]
+script = ExtResource("4_4tfnd")
+_target = SubResource("Resource_3byj6")
+_cast_time = 0.0
+_cooldown = 0.0
+_effects = Array[ExtResource("1_goq2v")]([ExtResource("2_446cy")])
+_projectile_scene = ExtResource("3_446cy")
+metadata/_custom_type_script = "uid://buequrxuxivpp"

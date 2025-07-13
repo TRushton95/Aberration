@@ -11,7 +11,7 @@ signal died
 @onready var _orb_container : Node = $OrbContainer
 @onready var _weapon : Weapon = $Sword
 
-var ability : Ability = load("res://game/entities/abilities/implementations/fireball.tres")
+var ability : Ability = load("res://game/entities/abilities/implementations/fireball/fireball.tres")
 
 var _selected_spell_slot : int = -1
 
