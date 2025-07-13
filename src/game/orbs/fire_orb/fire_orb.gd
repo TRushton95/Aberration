@@ -4,7 +4,7 @@ extends Orb
 
 
 func _on_chest_burning_timer_timeout(player: Player) -> void:
-	var colliders : Array[Node2D] = SpatialHelper.get_intersecting_bodies(player.get_world_2d().direct_space_state, player.global_position, 100)
+	var colliders : Array[Node2D] = SpatialHelper.get_intersecting_bodies_circle(player.get_world_2d().direct_space_state, player.global_position, 100)
 	
 	for i in colliders.size():
 		var collider : Node2D = colliders[i] as Node2D

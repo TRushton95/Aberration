@@ -11,6 +11,10 @@ signal died
 @onready var _orb_container : Node = $OrbContainer
 @onready var _weapon : Weapon = $Sword
 
+var ability : Ability = load("res://game/entities/abilities/implementations/fireball.tres")
+
+var _selected_spell_slot : int = -1
+
 var _orb_slots : Dictionary[Enums.OrbSlot, Orb] = {
 	Enums.OrbSlot.LEGS: null,
 	Enums.OrbSlot.CHEST: null,
@@ -40,7 +44,15 @@ func _process(delta: float) -> void:
 	_update_orb()
 	
 	if Input.is_action_just_pressed("attack"):
-		_weapon.fire()
+		if _selected_spell_slot == -1:
+			_weapon.fire()
+		else:
+			ability.execute(self, get_global_mouse_position())
+			
+		
+	if Input.is_action_just_pressed("select_spell_slot_1"):
+		_selected_spell_slot = 0
+		
 
 
 func _physics_process(delta: float) -> void:

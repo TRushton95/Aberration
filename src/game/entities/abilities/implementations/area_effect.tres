@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AreaEffect" load_steps=6 format=3 uid="uid://b3q811knenc33"]
+
+[ext_resource type="Script" uid="uid://dc6thg5pqepm0" path="res://game/entities/abilities/effects/effect.gd" id="1_7ften"]
+[ext_resource type="Script" uid="uid://cpd66hxtgfcx4" path="res://game/entities/abilities/effects/damage_effect.gd" id="2_g3myj"]
+[ext_resource type="Script" uid="uid://c80x7ylcpekg8" path="res://game/entities/abilities/effects/apply_area_effect.gd" id="2_isq57"]
+
+[sub_resource type="Resource" id="Resource_k1053"]
+script = ExtResource("2_g3myj")
+_value = 20
+metadata/_custom_type_script = "uid://cpd66hxtgfcx4"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6baso"]
+radius = 200.0
+
+[resource]
+script = ExtResource("2_isq57")
+_shape = SubResource("CircleShape2D_6baso")
+_effects = Array[ExtResource("1_7ften")]([SubResource("Resource_k1053")])
+metadata/_custom_type_script = "uid://c80x7ylcpekg8"
